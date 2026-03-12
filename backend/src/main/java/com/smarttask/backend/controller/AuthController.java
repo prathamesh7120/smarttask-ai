@@ -1,6 +1,7 @@
 package com.smarttask.backend.controller;
 
 import com.smarttask.backend.dto.AuthResponse;
+import com.smarttask.backend.dto.LoginRequest;
 import com.smarttask.backend.dto.RegisterRequest;
 import com.smarttask.backend.service.AuthService;
 import lombok.RequiredArgsConstructor;
@@ -17,18 +18,18 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<AuthResponse> register(@RequestBody RegisterRequest request) {
-
         AuthResponse response = authService.register(request);
-
         return ResponseEntity.ok(response);
+    }
 
-
-
+    @PostMapping("/login")
+    public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest request) {
+        AuthResponse response = authService.login(request);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/test")
     public ResponseEntity<String> test() {
         return ResponseEntity.ok("SmartTask API is running!");
     }
-
 }
